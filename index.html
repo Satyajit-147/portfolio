@@ -726,44 +726,6 @@
     }
 
 
-    /* Stats */
-    .stats {
-      padding: 0 0 56px;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .stat {
-      padding: 22px 24px;
-      border-left: 1px solid var(--line);
-    }
-
-    .stat:first-child {
-      border-left: 0;
-    }
-
-    .stat-n {
-      display: block;
-      font: 500 2rem/1.1 var(--serif);
-      color: var(--text);
-      letter-spacing: -0.01em;
-    }
-
-    .stat-l {
-      display: block;
-      margin-top: 6px;
-      font-size: .86rem;
-      color: var(--muted);
-      line-height: 1.45;
-    }
-
     /* ---------- Sections ---------- */
     .section {
       border-top: 1px solid var(--line);
@@ -1067,6 +1029,70 @@
     .compare:has(input:focus-visible) {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
+    }
+
+    /* Spec sheet: stands in for media when a project has no footage */
+    .spec {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 22px 8px;
+      background-color: var(--surface);
+      background-image: radial-gradient(var(--dot) 1px, transparent 1.3px);
+      background-size: 18px 18px;
+      box-shadow: var(--shadow);
+      transition: box-shadow .25s, transform .25s;
+    }
+
+    .work:hover .spec {
+      box-shadow: var(--shadow-lift);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .work:hover .spec {
+        transform: translateY(-2px);
+      }
+    }
+
+    .spec-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+      font: 500 .72rem/1.3 var(--mono);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .spec-head b {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .spec dl>div {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 12px;
+      padding: 11px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .spec dl>div:first-child {
+      border-top: 0;
+    }
+
+    .spec dt {
+      font: 500 .72rem/1.7 var(--mono);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .spec dd {
+      font-size: .9rem;
+      line-height: 1.5;
+      color: var(--text);
     }
 
     .work-meta {
@@ -1380,18 +1406,6 @@
         gap: 44px;
       }
 
-      .stats-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .stat:nth-child(3) {
-        border-left: 0;
-      }
-
-      .stat:nth-child(n+3) {
-        border-top: 1px solid var(--line);
-      }
-
       .section-grid {
         grid-template-columns: 1fr;
         gap: 22px;
@@ -1444,16 +1458,12 @@
         justify-content: center;
       }
 
-      .stats {
-        padding-bottom: 40px;
+      .spec {
+        padding: 16px 18px 6px;
       }
 
-      .stat {
-        padding: 16px;
-      }
-
-      .stat-n {
-        font-size: 1.6rem;
+      .spec dl>div {
+        grid-template-columns: 96px minmax(0, 1fr);
       }
 
       .section {
@@ -1618,35 +1628,11 @@
             </li>
             <li>
               <time datetime="2026-05">May 2026</time>
-              <p>Placed <a href="#experience"><strong>top 20 of 300+ teams</strong></a> in the e-Yantra Robotics
+              <p>Placed <a href="#holonomic"><strong>top 20 of 300+ teams</strong></a> in the e-Yantra Robotics
                 Competition with our autonomous holonomic robot.</p>
             </li>
           </ol>
         </aside>
-      </div>
-    </section>
-
-    <!-- Highlights -->
-    <section class="stats" aria-label="Highlights">
-      <div class="wrap">
-        <div class="stats-grid reveal">
-          <div class="stat">
-            <span class="stat-n">IIT Bombay</span>
-            <span class="stat-l">Research intern, e-Yantra lab · 2026</span>
-          </div>
-          <div class="stat">
-            <span class="stat-n">Top 20</span>
-            <span class="stat-l">of 300+ teams, e-Yantra Robotics Competition</span>
-          </div>
-          <div class="stat">
-            <span class="stat-n">10th</span>
-            <span class="stat-l">International Rover Challenge, with MaRS</span>
-          </div>
-          <div class="stat">
-            <span class="stat-n">8.90</span>
-            <span class="stat-l">CGPA out of 10, IIITDM Kancheepuram</span>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -1741,13 +1727,12 @@
             </div>
             <p class="org">IIT Bombay · national robotics competition</p>
             <ul>
-              <li>Placed <span class="result">top 20 of 300+ teams</span> nationwide, clearing six months of national
-                software and hardware qualifying rounds.</li>
-              <li>Built a holonomic robot with a PID-controlled omnidirectional drive for precise trajectory tracking
-                and docking, transporting crates to drop zones.</li>
-              <li>Integrated an ArUco marker vision pipeline for real-time pose estimation, driving automated
-                detection and pick-and-place.</li>
+              <li>Built an autonomous holonomic robot with ArUco-based pose estimation; placed top 20 of 300+ teams
+                after six months of national software and hardware qualifying rounds.</li>
             </ul>
+            <div class="work-links">
+              <a href="#holonomic">Project details ↓</a>
+            </div>
           </article>
         </div>
       </div>
@@ -1877,6 +1862,57 @@
                   <svg class="ic fill"><use href="#i-github" /></svg> Code
                 </a>
               </div>
+            </div>
+          </article>
+
+          <article class="work reveal" id="holonomic">
+            <div class="spec">
+              <p class="spec-head"><span>Spec sheet</span><b>e-Yantra Robotics Competition</b></p>
+              <dl>
+                <div>
+                  <dt>Result</dt>
+                  <dd>Top 20 of 300+ teams nationwide</dd>
+                </div>
+                <div>
+                  <dt>Duration</dt>
+                  <dd>Sep 2025 – May 2026, six months of national software and hardware qualifying rounds</dd>
+                </div>
+                <div>
+                  <dt>Drive</dt>
+                  <dd>Holonomic omnidirectional base with PID control for trajectory tracking and docking</dd>
+                </div>
+                <div>
+                  <dt>Perception</dt>
+                  <dd>ArUco marker pipeline for real-time pose estimation</dd>
+                </div>
+                <div>
+                  <dt>Task</dt>
+                  <dd>Detect crates, pick them up and deliver them to drop zones autonomously</dd>
+                </div>
+                <div>
+                  <dt>Stack</dt>
+                  <dd>ROS 2 · OpenCV · Python</dd>
+                </div>
+              </dl>
+            </div>
+            <div>
+              <p class="work-meta">Mobile robotics · 2025–26</p>
+              <h3>Autonomous holonomic robot</h3>
+              <p class="ctx">e-Yantra Robotics Competition, IIT Bombay · team project</p>
+              <p class="desc">
+                An omnidirectional robot built for precise trajectory tracking and docking.
+                A <strong>PID-controlled holonomic drive</strong> lets it translate in any direction without turning,
+                and an <strong>ArUco marker vision pipeline</strong> estimates its pose in real time to drive
+                automated detection, pick-and-place, and delivery of crates to drop zones.
+              </p>
+              <ul class="tags">
+                <li>ROS 2</li>
+                <li>Holonomic drive</li>
+                <li>PID control</li>
+                <li>OpenCV</li>
+                <li>ArUco</li>
+                <li>Pose estimation</li>
+              </ul>
             </div>
           </article>
 
